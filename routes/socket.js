@@ -53,7 +53,6 @@ function init(app, io) {
           let newMessage = new Message();
           newMessage.text = conversationMessage.text;
           newMessage.user = conversationMessage.sender;
-
           io.emit("incomingMessage", conversationMessage);
         });
       
@@ -120,6 +119,9 @@ function init(app, io) {
             }
           }
         });
+        socket.on('openRoomId', (data) => {
+          io.emit('openRoomId1', data);
+        });
 
         socket.on('signal', (data) => {
           io.to(data.room).emit('desc', data.desc)        
@@ -133,4 +135,6 @@ function init(app, io) {
       });
     }
   }
+
+
 }
