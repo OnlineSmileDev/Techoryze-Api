@@ -23,6 +23,9 @@ var ConversationSchema = new mongoose.Schema({
   expertRating: {
     type: String,
   },
+  chat_accpet: {
+    type: Boolean,
+  },
   participants: [{
     type: Schema.Types.ObjectId, ref: 'User'
   }],

@@ -72,6 +72,10 @@ function init(app, io) {
           socket.broadcast.emit("incomingSessionVideoOption", session);
         });
 
+        socket.on('chatAccept', (session) => {
+          io.emit("chatAccept", session);
+        });
+
         socket.on('rating', (rating) => {
           socket.broadcast.emit("incomingRating", rating);
         });
