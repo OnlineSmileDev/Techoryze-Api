@@ -4,11 +4,16 @@ var Conversation = require("../models/conversation")
 
 //create new competition
 router.post('/create_conversation', function (req, res) {
-  let user = req.body.userName;
+  let userName = req.body.userName;
 
   let newConversation = new Conversation();
-  newConversation.user = user;
+  newConversation.user = userName;
   newConversation.channel = 'FIRST-CHANNEL';
+  newConversation.chat_accpet = false;
+  newConversation.environment = '';
+  newConversation.problem = '';
+  newConversation.expert = '';
+  newConversation.expertRating = '';
 
   Conversation.findOne({ channel: 'FIRST-CHANNEL' }).exec(function (err, doc) {
     if (err) {
@@ -20,7 +25,16 @@ router.post('/create_conversation', function (req, res) {
       if (doc) {
         Conversation.findOneAndUpdate(
           { channel: 'FIRST-CHANNEL' },
-          { $set: { user: user } },
+          {
+            $set: {
+              user: userName,
+              chat_accpet: false,
+              environment: '',
+              problem: '',
+              expert: '',
+              expertRating: '',
+            }
+          },
           { new: true },
           function (err, doc) {
             if (err) {

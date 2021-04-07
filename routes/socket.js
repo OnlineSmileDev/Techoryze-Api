@@ -57,19 +57,19 @@ function init(app, io) {
         });
       
         socket.on('session', (session) => {
-          socket.broadcast.emit("incomingSession", session);
+          io.emit("incomingSession", session);
         });
 
         socket.on('sessionOption', (session) => {
-          socket.broadcast.emit("incomingSessionOption", session);
+          io.emit("incomingSessionOption", session);
         });
 
         socket.on('sessionVideo', (session) => {
-          socket.broadcast.emit("incomingSessionVideo", session);
+          io.emit("incomingSessionVideo", session);
         });
 
         socket.on('sessionVideoOption', (session) => {
-          socket.broadcast.emit("incomingSessionVideoOption", session);
+          io.emit("incomingSessionVideoOption", session);
         });
 
         socket.on('chatAccept', (session) => {
@@ -77,7 +77,7 @@ function init(app, io) {
         });
 
         socket.on('rating', (rating) => {
-          socket.broadcast.emit("incomingRating", rating);
+          io.emit("incomingRating", rating);
         });
 
         socket.on('chatroom', (users) => {
@@ -110,6 +110,7 @@ function init(app, io) {
           socket.join(data.roomId);
           socket.room = data.roomId;
           const sockets = io.of('/').in().adapter.rooms[data.roomId];
+          console.log('====',sockets.length);
           if (sockets.length === 1) {
             io.emit('init')
             io.emit('getRoomId', data.roomId);
