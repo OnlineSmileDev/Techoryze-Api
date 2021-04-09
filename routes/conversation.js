@@ -5,6 +5,7 @@ var Conversation = require("../models/conversation")
 //create new competition
 router.post('/create_conversation', function (req, res) {
   let userName = req.body.userName;
+  let expertName = req.body.expertName;
 
   let newConversation = new Conversation();
   newConversation.user = userName;
@@ -28,6 +29,7 @@ router.post('/create_conversation', function (req, res) {
           {
             $set: {
               user: userName,
+              expertName: expertName,
               chat_accpet: false,
               environment: '',
               problem: '',

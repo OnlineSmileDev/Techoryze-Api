@@ -60,6 +60,10 @@ function init(app, io) {
           io.emit("incomingSession", session);
         });
 
+        socket.on('sendingOfferToExpert', (status) => {
+          io.emit("sendingOfferToExpert", status);
+        });
+
         socket.on('sessionOption', (session) => {
           io.emit("incomingSessionOption", session);
         });
