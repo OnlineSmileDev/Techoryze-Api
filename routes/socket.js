@@ -80,6 +80,10 @@ function init(app, io) {
           io.emit("chatAccept", session);
         });
 
+        socket.on('videoChatAccept', (session) => {
+          io.emit("videoChatAccept", session);
+        });
+
         socket.on('rating', (rating) => {
           io.emit("incomingRating", rating);
         });
@@ -114,7 +118,6 @@ function init(app, io) {
           socket.join(data.roomId);
           socket.room = data.roomId;
           const sockets = io.of('/').in().adapter.rooms[data.roomId];
-          console.log('====',sockets.length);
           if (sockets.length === 1) {
             io.emit('init')
             io.emit('getRoomId', data.roomId);
