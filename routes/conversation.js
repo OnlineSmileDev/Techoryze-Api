@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 var Conversation = require("../models/conversation")
 
-//create new competition
 router.post('/create_conversation', function (req, res) {
   let userName = req.body.userName;
   let expertName = req.body.expertName;
